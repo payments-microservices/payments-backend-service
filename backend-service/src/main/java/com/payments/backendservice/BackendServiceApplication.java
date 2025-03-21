@@ -1,4 +1,4 @@
-package com.payments.backend_service;
+package com.payments.backendservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
