@@ -1,6 +1,7 @@
 package com.payments.backendservice.models;
 
 public class PaymentDetails {
+
     private String account_holder_payer;
     private String account_holder_receiver;
     private int amount;
