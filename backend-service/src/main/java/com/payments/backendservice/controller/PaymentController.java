@@ -22,12 +22,12 @@ public class PaymentController {
     @PostMapping
     public ResponseEntity<PaymentResponse> processPayment(@RequestBody PaymentRequest paymentRequest) {
 
-        Optional<Account> payerAccountOpt = accountRepository.findById(paymentRequest.getPayment_details().getAccount_holder_payer());
-        Optional<Account> receiverAccountOpt = accountRepository.findById(paymentRequest.getPayment_details().getAccount_holder_receiver());
+        Optional<Account> payerAccountOpt = Optional.ofNullable(accountRepository.findByAccountNumber(paymentRequest.getPayment_details().getAccount_holder_payer()));
+        Optional<Account> receiverAccountOpt = Optional.ofNullable(accountRepository.findByAccountNumber(paymentRequest.getPayment_details().getAccount_holder_receiver()));
 
         // Check if both accounts exist
         if (payerAccountOpt.isEmpty() || receiverAccountOpt.isEmpty()) {
-            return new ResponseEntity<>(new PaymentResponse(paymentRequest.getId(), "FAILURE"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new PaymentResponse(paymentRequest.getId(), "REQUEST_DETAILS_INVALID"), HttpStatus.BAD_REQUEST);
         }
 
         // Get actual Account objects
@@ -39,7 +39,7 @@ public class PaymentController {
         int transferAmount = paymentRequest.getPayment_details().getAmount();
 
         if (payerBalance < transferAmount) {
-            return new ResponseEntity<>(new PaymentResponse(paymentRequest.getId(), "FAILURE"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new PaymentResponse(paymentRequest.getId(), "INSUFFICIENT_BALANCE"), HttpStatus.BAD_REQUEST);
         }
 
         // Perform transaction

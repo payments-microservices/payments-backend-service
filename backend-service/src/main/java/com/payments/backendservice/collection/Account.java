@@ -8,10 +8,12 @@ public class Account {
     @Id
     private String id;
     private String userName;
+    private String accountNumber;
     private String accountBalance;
 
-    public Account(String userName, String accountBalance) {
+    public Account(String userName, String accountNumber, String accountBalance) {
         this.userName = userName;
+        this.accountNumber=accountNumber;
         this.accountBalance = accountBalance;
     }
 
@@ -31,6 +33,14 @@ public class Account {
         this.userName = userName;
     }
 
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
     public String getAccountBalance() {
         return accountBalance;
     }
@@ -44,6 +54,7 @@ public class Account {
         return "Account{" +
                 "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
                 ", accountBalance='" + accountBalance + '\'' +
                 '}';
     }
