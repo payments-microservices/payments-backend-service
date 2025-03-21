@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.payments</groupId>
-	<artifactId>backend-service</artifactId>
+	<artifactId>backendservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend-service</name>
+	<name>backendservice</name>
 	<description>Backend Service for Payments Project</description>
 	<url/>
 	<licenses>
