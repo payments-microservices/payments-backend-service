@@ -3,7 +3,7 @@ package com.payments.backendservice.collection;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "account")
+@Document(collection = "accounts")
 public class Account {
     @Id
     private String id;
