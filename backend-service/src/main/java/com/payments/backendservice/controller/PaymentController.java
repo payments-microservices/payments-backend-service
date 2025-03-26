@@ -19,7 +19,7 @@ public class PaymentController {
     @Autowired
     private AccountRepository accountRepository;
 
-    @PostMapping
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<PaymentResponse> processPayment(@RequestBody PaymentRequest paymentRequest) {
 
         Optional<Account> payerAccountOpt = Optional.ofNullable(accountRepository.findByAccountNumber(paymentRequest.getPayment_details().getAccount_holder_payer()));
